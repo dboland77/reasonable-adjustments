@@ -34,7 +34,6 @@ exports.create = (req, res) => {
 
 // Retrieve all Adjustments from the database.
 exports.findAll = (req, res) => {
-  console.log("HELLLOOOOOO")
     const disability_name = req.query.disability_name;
     let condition = disability_name ? { title: { [Op.like]: `%${disability_name}%` } } : null;
   

@@ -19,6 +19,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.disability_list = require("./disabilities.model.js")(sequelize, Sequelize);
+db.disabilities = require("./disabilities.model.js")(sequelize, Sequelize);
 
 module.exports = db;

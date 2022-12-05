@@ -22,7 +22,15 @@ app.get("/", (req, res) => {
 });
 
 const db = require("./src/backend/models");
-db.sequelize.sync();
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
+
+require("./src/backend/routes/disabilities.routes")(app)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

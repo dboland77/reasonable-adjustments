@@ -19,8 +19,11 @@ export const DisabilityDropdown = () => {
   };
   return (
     <select>
-      {disabilityList.map(d=><option key={d.id} value={d.disability_name}>{d.disability_name}</option>)}
-      
-      </select>
-  )
-}
+      {disabilityList.map((d) => (
+        <option key={d.id} value={d.disability_name}>
+          {d.disability_name}
+        </option>
+      ))}
+    </select>
+  );
+};

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import db from "../config/db.config.mjs";
-import { validateRegister, isLoggedIn } from "../middleware/users.js";
+import { validateRegister, isLoggedIn } from "../middleware/users.mjs";
 
 import dotenv from "dotenv";
 import path from "path";

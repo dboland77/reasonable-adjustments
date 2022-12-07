@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DisabilityDataService from "../../services/disabilities.service.js"
+// import DisabilityDataService from "../../services/disabilities.service.js"
 
 export const DisabilityDropdown = () => {
   const [disabilityList, setDisabilityList] = useState([]);
@@ -9,13 +9,13 @@ export const DisabilityDropdown = () => {
   }, []);
 
   const retrieveDisabilities = () => {
-    DisabilityDataService.getAll()
-      .then(response => {
-        setDisabilityList(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    // DisabilityDataService.getAll()
+    //   .then(response => {
+    //     setDisabilityList(response.data);
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
   };
   return (
     <select>

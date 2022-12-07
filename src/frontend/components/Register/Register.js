@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
-import { register } from "../services/auth.service";
+import { register } from "../../services/auth.service";
 
 const required = (value) => {
   if (!value) {
@@ -83,7 +80,7 @@ export const Register = (props) => {
   };
 
   return (
-    <div className="col-md-12">
+    <div className="col-md-2 mx-auto ">
       <div className="card card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -91,12 +88,12 @@ export const Register = (props) => {
           className="profile-img-card"
         />
 
-        <Form onSubmit={handleRegister} ref={form}>
+        <form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="username"
@@ -108,7 +105,7 @@ export const Register = (props) => {
 
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Input
+                <input
                   type="password"
                   className="form-control"
                   name="password"
@@ -136,8 +133,8 @@ export const Register = (props) => {
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+          <button style={{ display: "none" }} ref={checkBtn} />
+        </form>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {getPublicContent} from "../services/user.service";
+import {getPublicContent} from "../../services/user.service";
 
 export const Home = () => {
   const [content, setContent] = useState("");

@@ -27,7 +27,7 @@ export const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          Reasonable Adjustments System 
+         Reasonable Adjustments System 
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -77,6 +77,7 @@ export const App = () => {
 
       <Routes>
         <Route  path={"/"} element={<Home/>} />
+        <Route  path={"/home"} element={<Home/>} />
         <Route  path="/login" element={<Login/>} />
         <Route  path="/register" element={<Register/>} />
         <Route  path="/profile" element={<Profile/>} />

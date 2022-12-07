@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
-import { login } from "../services/auth.service";
+import { login } from "../../services/auth.service";
 
 const required = (value) => {
   if (!value) {
@@ -63,17 +60,19 @@ export const Login = (props) => {
   };
 
   return (
+    <div className="col-md-2 mx-auto">
+
     <div className="card card-container">
       <img
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         alt="profile-img"
         className="profile-img-card"
-      />
+        />
 
-      <Form onSubmit={handleLogin} ref={form}>
+      <form onSubmit={handleLogin} ref={form}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <Input
+          <input
             type="text"
             autoFocus
             className="form-control"
@@ -81,26 +80,26 @@ export const Login = (props) => {
             value={username}
             onChange={onChangeUsername}
             validations={[required]}
-          />
+            />
         </div>
 
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <Input
+          <input
             type="password"
             className="form-control"
             name="password"
             value={password}
             onChange={onChangePassword}
             validations={[required]}
-          />
+            />
         </div>
 
         <div className="form-group">
           <button className="btn btn-primary btn-block" disabled={loading}>
             {loading && (
               <span className="spinner-border spinner-border-sm"></span>
-            )}
+              )}
             <span>Login</span>
           </button>
         </div>
@@ -112,9 +111,10 @@ export const Login = (props) => {
             </div>
           </div>
         )}
-        <CheckButton style={{ display: "none" }} ref={checkBtn} />
-      </Form>
+        <button style={{ display: "none" }} ref={checkBtn} />
+      </form>
     </div>
+        </div>
   );
 };
 

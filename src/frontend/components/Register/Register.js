@@ -2,35 +2,35 @@ import React, { useState, useRef } from "react";
 
 import { register } from "../../services/auth.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+// const required = (value) => {
+//   if (!value) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
+// const vusername = (value) => {
+//   if (value.length < 3 || value.length > 20) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         The username must be between 3 and 20 characters.
+//       </div>
+//     );
+//   }
+// };
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
+// const vpassword = (value) => {
+//   if (value.length < 6 || value.length > 40) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         The password must be between 6 and 40 characters.
+//       </div>
+//     );
+//   }
+// };
 
 export const Register = (props) => {
   const form = useRef();
@@ -55,10 +55,6 @@ export const Register = (props) => {
 
     setMessage("");
     setSuccessful(false);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
       register(username, password, password).then(
         (response) => {
           setMessage("Successfully Registered. Please Log in.");
@@ -76,7 +72,6 @@ export const Register = (props) => {
           setSuccessful(false);
         }
       );
-    }
   };
 
   return (
@@ -99,7 +94,6 @@ export const Register = (props) => {
                   name="username"
                   value={username}
                   onChange={onChangeUsername}
-                  validations={[required, vusername]}
                 />
               </div>
 
@@ -111,7 +105,6 @@ export const Register = (props) => {
                   name="password"
                   value={password}
                   onChange={onChangePassword}
-                  validations={[required, vpassword]}
                 />
               </div>
 

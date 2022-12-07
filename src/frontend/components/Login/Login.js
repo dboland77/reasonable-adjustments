@@ -34,9 +34,7 @@ export const Login = (props) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
       login(username, password).then(
         () => {
           props.history.push("/profile");
@@ -53,10 +51,7 @@ export const Login = (props) => {
           setLoading(false);
           setMessage(resMessage);
         }
-      );
-    } else {
-      setLoading(false);
-    }
+      )
   };
 
   return (

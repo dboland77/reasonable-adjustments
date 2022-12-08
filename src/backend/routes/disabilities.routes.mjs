@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
-import db from "../config/db.config.mjs";
+import pool from "../config/db.config.mjs";
 import { validateRegister, isLoggedIn } from "../middleware/users.mjs";
 
 import dotenv from "dotenv";
@@ -24,9 +24,10 @@ router.get("/", (req, res) => {
     );
 });
 
+
 router.post("/login", (req, res, next) => {
-  db.query(
-    `SELECT * FROM users WHERE username = ${db.escape(req.body.username)};`,
+  pool.query(
+    `SELECT * FROM users WHERE username = ${req.body.username};`,
     (err, result) => {
       // user does not exist
       if (err) {
@@ -67,7 +68,7 @@ router.post("/login", (req, res, next) => {
               }
             );
 
-            db.query(
+            pool.query(
               `UPDATE users SET last_login = now() WHERE userid = '${result[0].userid}'`
             );
             return res.status(200).send({
@@ -87,7 +88,7 @@ router.post("/login", (req, res, next) => {
 
 // Pull random sample to represent different users
 router.get("/main", isLoggedIn, (req, res, next) => {
-  db.query(
+  pool.query(
     `SELECT * FROM assessment2 ORDER BY RAND() LIMIT 20;`,
     (err, result) => {
       if (err) {
@@ -101,11 +102,11 @@ router.get("/main", isLoggedIn, (req, res, next) => {
   );
 });
 
-router.post("/sign-up", validateRegister, (req, res, next) => {
-  db.query(
-    `SELECT * FROM users WHERE LOWER(username) = LOWER(${db.escape(
-      req.body.username
-    )});`,
+router.post("/register", validateRegister, (req, res, next) => {
+  console.log("register reached")
+  pool.query(
+    `SELECT * FROM users WHERE LOWER(username) = LOWER(${
+      req.body.usernam});`,
     (err, result) => {
       if (result.length) {
         return res.status(409).send({
@@ -121,10 +122,9 @@ router.post("/sign-up", validateRegister, (req, res, next) => {
           } else {
             // has hashed pw => add to database
             // db.escape() masks passed parameters to avoid SQL injection
-            db.query(
-              `INSERT INTO users (userid, username, password, registered, last_login) VALUES ('${uuidv4()}', ${db.escape(
-                req.body.username
-              )}, ${db.escape(hash)}, now(), now())`,
+            pool.query(
+              `INSERT INTO users (userid, username, password, registered, last_login) VALUES ('${uuidv4()}', ${
+                req.body.username}, ${hash}, now(), now())`,
               (err, result) => {
                 if (err) {
                   throw err;

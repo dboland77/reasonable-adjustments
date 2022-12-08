@@ -1,4 +1,6 @@
-const db = {
+import pg from "pg"
+
+const dbConfig = {
     HOST: "localhost",
     USER: "daveboland",
     PASSWORD: "postgres",
@@ -12,4 +14,8 @@ const db = {
     }
   };
 
-  export default db;
+
+const pool = new pg.Pool(dbConfig)
+
+
+export default pool;

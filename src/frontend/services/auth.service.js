@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const register = (username, password, password_repeat) => {
-  return axios.post(process.env.REACT_APP_API_URL + "sign-up", {
+  return axios.post(process.env.REACT_APP_API_URL + "register", {
     username,
     password,
     password_repeat,
@@ -10,7 +10,7 @@ const register = (username, password, password_repeat) => {
 
 const login = (username, password) => {
   return axios
-    .post(process.env.REACT_APP_API_URL + "login", {
+    .post(process.env.REACT_APP_API_URL+ "login", {
       username,
       password,
     })

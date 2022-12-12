@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 
 import { login } from "../../services/auth.service";
+import { useNavigate } from "react-router";
 
 const required = (value) => {
   if (!value) {
@@ -12,7 +13,9 @@ const required = (value) => {
   }
 };
 
-export const Login = (props) => {
+export const Login = () => {
+  const navigate = useNavigate();
+
   const form = useRef();
   const checkBtn = useRef();
   const [username, setUsername] = useState("");
@@ -37,8 +40,7 @@ export const Login = (props) => {
 
       login(username, password).then(
         () => {
-          props.history.push("/profile");
-          window.location.reload();
+         navigate("/")
         },
         (error) => {
           const resMessage =

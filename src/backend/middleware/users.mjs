@@ -32,7 +32,6 @@ const validateRegister = (req, res, next) => {
       msg: "Both passwords must match",
     });
   }
-
   next();
 };
 

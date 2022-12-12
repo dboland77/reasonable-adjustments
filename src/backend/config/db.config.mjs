@@ -1,21 +1,13 @@
-import pg from "pg"
+import  pg from "pg"
+import dotenv from "dotenv"
+dotenv.config();
 
-const dbConfig = {
-    HOST: "localhost",
-    USER: "daveboland",
-    PASSWORD: "postgres",
-    DB: "postgres",
-    dialect: "postgres",
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
-  };
+const {Pool} = pg
 
-
-const pool = new pg.Pool(dbConfig)
-
-
-export default pool;
+export const pool = new Pool({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT
+})

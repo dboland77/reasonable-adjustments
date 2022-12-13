@@ -43,7 +43,6 @@ export const Login = () => {
       dblogin(username, password).then(
         () => {
          navigate("/")
-         console.log("hello")
          dispatch(login())
         },
         (error) => {

@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const dbregister = (username, password, password_repeat) => {
+const dbregister = (username, password, password_repeat, admin) => {
   return axios.post(process.env.REACT_APP_API_URL + "register", {
     username,
     password,
     password_repeat,
+    admin
   });
 };
 

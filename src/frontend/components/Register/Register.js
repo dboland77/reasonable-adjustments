@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-
+import {useDispatch, useSelector} from "react-redux"
 import { dbregister } from "../../services/auth.service";
+import {toggleAdmin, getAdminState} from "../../reducers/userSlice"
 
 export const Register = (props) => {
   const form = useRef();
@@ -9,6 +10,9 @@ export const Register = (props) => {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+
+  const dispatch = useDispatch()
+  const admin = useSelector(getAdminState)
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -20,12 +24,14 @@ export const Register = (props) => {
     setPassword(password);
   };
 
+  const handleAdminCheck = (e) => {
+        dispatch(toggleAdmin(e.target.checked))
+  }
   const handleRegister = (e) => {
     e.preventDefault();
-
     setMessage("");
     setSuccessful(false);
-      dbregister(username, password, password).then(
+      dbregister(username, password, password, admin).then(
         (response) => {
           setMessage("Successfully Registered. Please Log in.");
           setSuccessful(true);
@@ -76,6 +82,10 @@ export const Register = (props) => {
                   value={password}
                   onChange={onChangePassword}
                 />
+              </div>
+              <div>
+              <label> Admin {" "}</label>
+              <input type="checkbox" onChange={handleAdminCheck}/>
               </div>
 
               <div className="form-group">

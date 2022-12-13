@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-
+import {useSelector} from 'react-redux'
 import {getPublicContent} from "../../services/user.service";
+import { getLoginState } from "../../reducers/userSlice";
 
 export const Home = () => {
   const [content, setContent] = useState("");
-
+  const loggedIn = useSelector(getLoginState)
+  
   useEffect(() => {
+    loggedIn ? setContent("Logged In")
+    :
     getPublicContent().then(
       (response) => {
         setContent(response.data);
@@ -18,7 +22,8 @@ export const Home = () => {
 
         setContent(_content);
       }
-    );
+    ) 
+    
   }, []);
 
   return (

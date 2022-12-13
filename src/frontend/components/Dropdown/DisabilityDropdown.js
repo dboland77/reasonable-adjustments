@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import DisabilityDataService from "../../services/disabilities.service.js"
 
 export const DisabilityDropdown = () => {
-  const [disabilityList, setDisabilityList] = useState([]);
+  const [disabilityList] = useState([]);
 
   useEffect(() => {
     retrieveDisabilities();

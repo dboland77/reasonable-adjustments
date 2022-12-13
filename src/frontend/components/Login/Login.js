@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
-
-import { login } from "../../services/auth.service";
+import {useDispatch} from "react-redux"
+import {dblogin } from "../../services/auth.service";
 import { useNavigate } from "react-router";
+import {login} from "../../reducers/userSlice"
 
 const required = (value) => {
   if (!value) {
@@ -15,6 +16,7 @@ const required = (value) => {
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const form = useRef();
   const checkBtn = useRef();
@@ -38,9 +40,11 @@ export const Login = () => {
     setMessage("");
     setLoading(true);
 
-      login(username, password).then(
+      dblogin(username, password).then(
         () => {
          navigate("/")
+         console.log("hello")
+         dispatch(login())
         },
         (error) => {
           const resMessage =

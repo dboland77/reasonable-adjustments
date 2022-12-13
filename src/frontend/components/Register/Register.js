@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import { register } from "../../services/auth.service";
+import { dbregister } from "../../services/auth.service";
 
 export const Register = (props) => {
   const form = useRef();
@@ -25,7 +25,7 @@ export const Register = (props) => {
 
     setMessage("");
     setSuccessful(false);
-      register(username, password, password).then(
+      dbregister(username, password, password).then(
         (response) => {
           setMessage("Successfully Registered. Please Log in.");
           setSuccessful(true);

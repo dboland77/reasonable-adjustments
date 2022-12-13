@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const register = (username, password, password_repeat) => {
+const dbregister = (username, password, password_repeat) => {
   return axios.post(process.env.REACT_APP_API_URL + "register", {
     username,
     password,
@@ -8,7 +8,7 @@ const register = (username, password, password_repeat) => {
   });
 };
 
-const login = (username, password) => {
+const dblogin = (username, password) => {
   return axios
     .post(process.env.REACT_APP_API_URL+ "login", {
       username,
@@ -22,17 +22,17 @@ const login = (username, password) => {
     });
 };
 
-const logout = () => {
+const dblogout = () => {
   localStorage.removeItem("user");
 };
 
-const getCurrentUser = () => {
+const dbgetCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
 export {
-  register,
-  login,
-  logout,
-  getCurrentUser,
+  dbregister,
+  dblogin,
+  dblogout,
+  dbgetCurrentUser,
 };

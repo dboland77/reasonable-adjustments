@@ -1,9 +1,9 @@
 import React, {Fragment} from "react";
-import { getCurrentUser } from "../services/auth.service";
+import { dbgetCurrentUser } from "../services/auth.service";
 import {Gallery} from "./Gallery";
 
 export const Profile = () => {
-  const currentUser = getCurrentUser();
+  const currentUser = dbgetCurrentUser();
 
   return (
     <Fragment>

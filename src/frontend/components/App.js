@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/index.css"
 
-import { getCurrentUser, logout } from "../services/auth.service"
+import { dbgetCurrentUser, dblogout } from "../services/auth.service"
 
 import {Login, Register, Home, Profile, Gallery, NotFound, User} from "."
 
@@ -12,7 +12,7 @@ export const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
-    const user = getCurrentUser();
+    const user = dbgetCurrentUser();
 
     if (user) {
       setCurrentUser(user);
@@ -20,7 +20,7 @@ export const App = () => {
   }, []);
 
   const logOut = () => {
-    logout();
+    dblogout();
   };
 
   return (

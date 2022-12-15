@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
-import {Book} from "./Book";
+import {Disability} from "./Disability";
 import { getDisabilities } from "../services/user.service";
-import "../styles/Gallery.css";
+import "../styles/Disability.css";
 
 export const Gallery = () => {
   const [disabilities, setDisabilites] = useState("");
@@ -27,13 +27,13 @@ export const Gallery = () => {
         <div className="main">
           <ul className="cards">
             {disabilities.map((gallery) => (
-              <Book
+              <Disability
                 key={gallery.id}
                 id={gallery.id}
                 name={gallery.Title_DistinctivetitlebookCovertitle_TitleText}
                 image={`${process.env.REACT_APP_PREFIX}${gallery.Location}${gallery.Cover_File}`}
                 author={gallery.Contributor1_PersonName}
-              ></Book>
+              ></Disability>
             ))}
           </ul>
         </div>

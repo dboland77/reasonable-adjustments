@@ -1,6 +1,6 @@
 export * from "./Dropdown/DisabilityDropdown"
 export * from "./App"
-export * from "./Book"
+export * from "./Disability"
 export * from "./Gallery"
 export * from "./Home/Home"
 export * from "./Login/Login"

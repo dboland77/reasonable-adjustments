@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {useSelector} from 'react-redux'
-import {getPublicContent} from "../../services/user.service";
+import {getPublicContent} from "../../services/user.service"
 import { getLoginState, getAdminState} from "../../reducers/userSlice";
 import {DisabilityDropdown} from "../Dropdown/DisabilityDropdown"
+import {Navbar} from "../Navbar/Navbar"
 
 export const Home = () => {
   const [content, setContent] = useState("");
@@ -29,11 +30,14 @@ export const Home = () => {
   }, [loggedIn, admin]);
 
   return (
+    <>
+    <Navbar/>
     <div className="container">
-      <header className="jumbotron">
+      <header>
         <h3>{content}</h3>
         {loggedIn && <DisabilityDropdown/>}
       </header>
     </div>
+    </>
   );
 };

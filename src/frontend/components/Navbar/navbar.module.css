@@ -1,0 +1,17 @@
+.navContainer {
+  display: flex;
+  gap: 1rem;
+  background-color: black;
+  padding: 1rem;
+}
+
+.navLink {
+color: white;
+font-weight: bold;
+font-size:large;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}

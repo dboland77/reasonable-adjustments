@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./frontend/styles/index.css";
+import "./frontend/styles/global.css";
 import { App } from "./frontend/components";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../src/frontend/store/store";

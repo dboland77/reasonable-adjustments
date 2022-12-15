@@ -1,24 +1,20 @@
-import {React, useState, useEffect} from 'react'
-import {Link} from "react-router-dom"
-import { dbgetCurrentUser, dblogout } from "../../services/auth.service";
+import {React} from 'react'
+import {Link} from "react-router-dom";
+import {useSelector} from 'react-redux';
+import { dblogout } from "../../services/auth.service";
+import {getUserState} from "../../reducers/userSlice"
 import styles from "./navbar.module.css"
 
 
 export const Navbar = () => {
 
-    const [currentUser, setCurrentUser] = useState(undefined);
-
-  useEffect(() => {
-    const user = dbgetCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
+const currentUser=false
+// console.log(useSelector(getUserState))
 
   const logOut = () => {
     dblogout();
   };
+
   return (
     <nav className={styles.navContainer}>
         <Link to={"/"} className={styles.navLink}>

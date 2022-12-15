@@ -16,24 +16,17 @@ const dblogin = (username, password) => {
       password,
     })
     .then((response) => {
-      if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
       return response.data;
     });
 };
 
 const dblogout = () => {
-  localStorage.removeItem("user");
 };
 
-const dbgetCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
-};
+
 
 export {
   dbregister,
   dblogin,
   dblogout,
-  dbgetCurrentUser,
 };

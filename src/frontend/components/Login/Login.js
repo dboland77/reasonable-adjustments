@@ -41,9 +41,9 @@ export const Login = () => {
     setLoading(true);
 
       dblogin(username, password).then(
-        () => {
+        (response) => {
          navigate("/")
-         dispatch(login())
+         dispatch(login(response))
         },
         (error) => {
           const resMessage =

@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
-// import DisabilityDataService from "../../services/disabilities.service.js"
+import { getDisabilities } from "../../services/user.service.js";
 
 export const DisabilityDropdown = () => {
-  const [disabilityList] = useState([]);
+  const [disabilityList, setDisabilityList] = useState([]);
 
   useEffect(() => {
-    retrieveDisabilities();
+    getDisabilities()
+      .then((response) => {
+        setDisabilityList(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
-  const retrieveDisabilities = () => {
-    // DisabilityDataService.getAll()
-    //   .then(response => {
-    //     setDisabilityList(response.data);
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
-  };
   return (
-    <select>
-      {disabilityList.map((d) => (
-        <option key={d.id} value={d.disability_name}>
-          {d.disability_name}
-        </option>
-      ))}
-    </select>
+    disabilityList.status === "success" && (
+      <select>
+        {disabilityList.data.map((d) => (
+          <option key={d.disability_id} value={d.disability_name}>
+            {d.disability_name}
+          </option>
+        ))}
+      </select>
+    )
   );
 };

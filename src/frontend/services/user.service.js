@@ -5,9 +5,9 @@ const getPublicContent = () => {
   return axios.get(process.env.REACT_APP_API_URL);
 };
 
-const getBooks = () => {
-  return axios.get(process.env.REACT_APP_API_URL + "main", {
+const getDisabilities = () => {
+  return axios.get(process.env.REACT_APP_API_URL + "disabilities", {
     headers: authHeader(),
   });
 };
-export { getBooks, getPublicContent };
+export { getDisabilities, getPublicContent };

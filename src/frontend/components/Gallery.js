@@ -1,32 +1,32 @@
 import React, { useState, useEffect, Fragment } from "react";
 import {Book} from "./Book";
-import { getBooks } from "../services/user.service";
+import { getDisabilities } from "../services/user.service";
 import "../styles/Gallery.css";
 
 export const Gallery = () => {
-  const [books, setBooks] = useState("");
+  const [disabilities, setDisabilites] = useState("");
 
   useEffect(() => {
-    getBooks().then(
+    getDisabilities().then(
       (response) => {
-        setBooks(response.data);
+        setDisabilites(response.data);
       },
       (error) => {
         const _books =
           (error.response && error.response.data) ||
           error.message ||
           error.toString();
-        setBooks(_books);
+        setDisabilites(_books);
       }
     );
   }, []);
 
   return (
     <Fragment>
-      {books && (
+      {disabilities && (
         <div className="main">
           <ul className="cards">
-            {books.map((gallery) => (
+            {disabilities.map((gallery) => (
               <Book
                 key={gallery.id}
                 id={gallery.id}

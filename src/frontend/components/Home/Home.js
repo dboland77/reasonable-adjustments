@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from 'react-redux'
 import {getPublicContent} from "../../services/user.service";
 import { getLoginState, getAdminState} from "../../reducers/userSlice";
+import {DisabilityDropdown} from "../Dropdown/DisabilityDropdown"
 
 export const Home = () => {
   const [content, setContent] = useState("");
@@ -31,6 +32,7 @@ export const Home = () => {
     <div className="container">
       <header className="jumbotron">
         <h3>{content}</h3>
+        {loggedIn && <DisabilityDropdown/>}
       </header>
     </div>
   );

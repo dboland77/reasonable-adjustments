@@ -1,18 +1,24 @@
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialDisabilityState = {
-    disabilitylist: ["test1", "test2", "test3", "test4"]
-}
-export const disabilityReducer = (state=initialDisabilityState, action) => {
-    switch (action.type) {
-        case "addDisability": 
-                return {
-                    disabilityList: [...state.disabilitylist, action.payload ]
-                }
-        case "removeDisability": 
-                return {
-                    disabilityList: state.disabilitylist.filter(d=>d!== action.payload)
-                }
-        default:
-            return state
-    }
-}
+export const disabilitySlice = createSlice({
+  name: "disability",
+  initialState: {
+    disabilityList: ["test1", "test2", "test3", "test4"],
+  },
+  reducers: {
+    addDisability: (state, action) => {
+      state.disabilityList = [...state.disabilityList, action.payload];
+    },
+    removeDisability: (state, action) => {
+      state.disabilityList = state.disabilityList.filter(
+        (d) => d !== action.payload
+      );
+    },
+  },
+});
+
+export const { addDisability, removeDisability } = disabilitySlice.actions;
+
+export const getDisabilityList = (state) => state.disabilityList;
+
+export default disabilitySlice.reducer;

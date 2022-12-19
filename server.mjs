@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import {getDefaultHome, 
     getDisabilities, 
+    postDisabilities,
     postRegistration,
     postLogin
 } from "./src/backend/routes/disabilities.routes.mjs"
@@ -32,5 +33,6 @@ app.route("/").get(getDefaultHome);
 app.route("/disabilities").get(getDisabilities);
 app.route("/register").post(postRegistration)
 app.route("/login").post(postLogin)
+app.route("/postdisabilities").post(postDisabilities)
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

@@ -31,6 +31,24 @@ const getDisabilities =
     });
   });
 
+const postDisabilities =
+  ("/postdisabilities",
+  (request, response) => {
+    pool.query(
+      `INSERT INTO disabilities (disability_name, last_update) VALUES ('test endpoint', now())`,
+      (err, result) => {
+        if (err) {
+          return response.status(400).send({
+            msg: err,
+          });
+        }
+        return response.status(201).send({
+          msg: "Disability added!",
+        });
+      }
+    );
+  });
+
 const postLogin =
   ("/login",
   (req, res, next) => {
@@ -86,7 +104,7 @@ const postRegistration =
     pool.query(
       `SELECT * FROM users WHERE LOWER(username) = LOWER('${req.body.username}');`,
       (err, result) => {
-        if (result.rowCount > 0)  {
+        if (result.rowCount > 0) {
           return res.status(409).send({
             msg: "This username is already in use!",
           });
@@ -121,4 +139,4 @@ const postRegistration =
     );
   });
 
-export { getDisabilities, getDefaultHome, postRegistration, postLogin};
+export { getDisabilities,postDisabilities, getDefaultHome, postRegistration, postLogin};

@@ -4,6 +4,7 @@ import {getPublicContent} from "../../services/user.service"
 import { getLoginState, getAdminState} from "../../reducers/userSlice";
 import {DisabilityDropdown} from "../Dropdown/DisabilityDropdown"
 import {Navbar} from "../Navbar/Navbar"
+import {CSVLoader} from "../CSVUploader/CSVUploader"
 
 export const Home = () => {
   const [content, setContent] = useState("");
@@ -36,6 +37,7 @@ export const Home = () => {
       <header>
         <h3>{content}</h3>
         {loggedIn && <DisabilityDropdown/>}
+        {admin && <CSVLoader/>}
       </header>
     </div>
     </>

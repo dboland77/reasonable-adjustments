@@ -17,6 +17,8 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.isLoggedIn = false;
+      state.username="";
+      state.admin=false;
     },
     toggleAdmin : (state) => {
       state.admin = !state.admin

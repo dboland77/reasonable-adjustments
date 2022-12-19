@@ -1,18 +1,18 @@
 import {React} from 'react'
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
-import { dblogout } from "../../services/auth.service";
 import {getUserState} from "../../reducers/userSlice"
+import {logout} from "../../reducers/userSlice"
 import styles from "./navbar.module.css"
 
 
 export const Navbar = () => {
 
-const currentUser=false
-// console.log(useSelector(getUserState))
+const currentUser=useSelector(getUserState)
 
-  const logOut = () => {
-    dblogout();
+  const handleLogOut = () => {
+    logout()
+    window.location.reload(false)
   };
 
   return (
@@ -42,7 +42,7 @@ const currentUser=false
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/logout" className={styles.navLink} onClick={logOut}>
+              <Link to="/" className={styles.navLink} onClick={handleLogOut}>
                 LogOut
               </Link>
             </li>

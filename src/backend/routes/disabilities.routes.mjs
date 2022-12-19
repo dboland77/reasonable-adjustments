@@ -16,16 +16,6 @@ const getDefaultHome =
       );
   });
 
-  const getLogout =
-  ("/logout",
-  (req, res) => {
-    res
-      .status(200)
-      .send(
-        `Logged out`
-      );
-  });
-
 const getDisabilities =
   ("/disabilities",
   (request, response) => {
@@ -131,4 +121,4 @@ const postRegistration =
     );
   });
 
-export { getDisabilities, getDefaultHome, postRegistration, postLogin, getLogout};
+export { getDisabilities, getDefaultHome, postRegistration, postLogin};

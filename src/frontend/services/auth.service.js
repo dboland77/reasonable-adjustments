@@ -20,13 +20,9 @@ const dblogin = (username, password) => {
     });
 };
 
-const dblogout = () => {
-};
-
 
 
 export {
   dbregister,
   dblogin,
-  dblogout,
 };

@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { dbregister } from "../../services/auth.service";
-import {toggleAdmin, getAdminState} from "../../reducers/userSlice"
+import {toggleAdmin, getAdminState} from "../../reducers/userSlice";
+import { useNavigate } from "react-router";
 
 export const Register = (props) => {
   const form = useRef();
@@ -13,6 +14,7 @@ export const Register = (props) => {
 
   const dispatch = useDispatch()
   const admin = useSelector(getAdminState)
+  const navigate = useNavigate();
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -35,6 +37,7 @@ export const Register = (props) => {
         (response) => {
           setMessage("Successfully Registered. Please Log in.");
           setSuccessful(true);
+          setTimeout(()=>navigate("/"), 2500)
         },
         (error) => {
           const resMessage =

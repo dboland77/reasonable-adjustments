@@ -1,0 +1,42 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.stepperItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.stepperItem:not(:last-child):after {
+  content: "";
+  width: 2px;
+  height: 10px;
+  background-color: red;
+  position: absolute;
+  left: 12px;
+  top: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.stepperItemIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  color: #fff;
+  margin-right: 8px;
+}
+
+.stepperItemIcon.completed {
+  background-color: #4caf50;
+}
+
+.stepperItemLabel {
+  flex: 1;
+}

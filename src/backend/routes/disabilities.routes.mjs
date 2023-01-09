@@ -6,6 +6,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const formatValues = (arr) => {
+  let res = arr.map((a)=>`('${a}', now())`).join(',')
+  return res
+}
+
 const getDefaultHome =
   ("/",
   (req, res) => {
@@ -18,14 +23,14 @@ const getDefaultHome =
 
 const getDisabilities =
   ("/disabilities",
-  (request, response) => {
+  (req, res) => {
     pool.query("SELECT * FROM disabilities", (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).json({
+      res.status(200).json({
         status: "success",
-        requestTime: request.requestTime,
+        requestTime: req.requestTime,
         data: results.rows,
       });
     });
@@ -33,25 +38,32 @@ const getDisabilities =
 
 const postDisabilities =
   ("/postdisabilities",
-  (request, response) => {
+  (req, res) => {
+    if (req.body.disability_names.length > 0){
+      const values = formatValues(req.body.disability_names)
+      console.log(values)
+    const sql = `INSERT INTO disabilities (disability_name, last_update) values ${values} RETURNING *` 
     pool.query(
-      `INSERT INTO disabilities (disability_name, last_update) VALUES ('test endpoint', now())`,
+     sql,
       (err, result) => {
         if (err) {
-          return response.status(400).send({
+          return res.status(400).send({
             msg: err,
           });
         }
-        return response.status(201).send({
-          msg: "Disability added!",
+        return res.status(201).send({
+          msg: "Disabilities added!",
         });
       }
     );
-  });
+  } else {
+  return res.status(201).send({msg:'Please enter a non-blank disability name'})}
+  })
+;
 
 const postLogin =
   ("/login",
-  (req, res, next) => {
+  (req, res) => {
     pool.query(
       `SELECT * FROM users WHERE username = '${req.body.username}';`,
       (err, result) => {
@@ -100,7 +112,7 @@ const postLogin =
 const postRegistration =
   ("/register",
   validateRegister,
-  (req, res, next) => {
+  (req, res) => {
     pool.query(
       `SELECT * FROM users WHERE LOWER(username) = LOWER('${req.body.username}');`,
       (err, result) => {

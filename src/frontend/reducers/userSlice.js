@@ -28,8 +28,4 @@ export const userSlice = createSlice({
 
 export const { login, logout, toggleAdmin} = userSlice.actions;
 
-export const getLoginState = (state) => state.isLoggedIn
-export const getAdminState = (state) => state.admin
-export const getUserState = (state) => state.username
-
 export default userSlice.reducer

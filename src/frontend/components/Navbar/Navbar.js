@@ -1,14 +1,13 @@
 import {React} from 'react'
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
-import {getUserState} from "../../reducers/userSlice"
 import {logout} from "../../reducers/userSlice"
 import styles from "./navbar.module.css"
 
 
 export const Navbar = () => {
 
-const currentUser=useSelector(getUserState)
+const currentUser=useSelector(state=>state.user.username)
 
   const handleLogOut = () => {
     logout()

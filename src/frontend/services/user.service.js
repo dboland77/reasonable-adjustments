@@ -7,4 +7,14 @@ const getPublicContent = () => {
 const getDisabilities = () => {
   return axios.get(process.env.REACT_APP_API_URL + "disabilities", {});
 };
-export { getDisabilities, getPublicContent };
+
+const setDisabilities = (names) => {
+  return axios.post(process.env.REACT_APP_API_URL + "postdisabilities", 
+  {
+    "disability_names": names
+  });
+};
+
+
+
+export { getDisabilities, setDisabilities, getPublicContent };

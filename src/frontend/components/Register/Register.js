@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { dbregister } from "../../services/auth.service";
-import {toggleAdmin, getAdminState} from "../../reducers/userSlice";
+import {toggleAdmin} from "../../reducers/userSlice";
 import { useNavigate } from "react-router";
 
 export const Register = (props) => {
@@ -13,7 +13,7 @@ export const Register = (props) => {
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch()
-  const admin = useSelector(getAdminState)
+  const admin = useSelector(state=>state.admin)
   const navigate = useNavigate();
 
   const onChangeUsername = (e) => {

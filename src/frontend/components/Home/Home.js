@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import {useSelector} from 'react-redux'
 import {getPublicContent} from "../../services/user.service"
-import { getLoginState, getAdminState} from "../../reducers/userSlice";
 import {DisabilityDropdown} from "../Dropdown/DisabilityDropdown"
 import {Navbar} from "../Navbar/Navbar"
 import {VerticalStepper} from "../VerticalStepper/VerticalStepper"
 import {CSVLoader} from "../CSVUploader/CSVUploader"
+import { BulkInsertButton } from "../BulkInsertButton";
 
 export const Home = () => {
   const [content, setContent] = useState("");
-  const loggedIn = useSelector(getLoginState)
-  const admin = useSelector(getAdminState)
+  const loggedIn = useSelector(state=>state.user.isLoggedIn)
+  const admin = useSelector(state=>state.user.admin)
   useEffect(() => {
     loggedIn ? 
     admin ? setContent("Logged In as admin") : setContent("Logged in")
@@ -45,7 +45,12 @@ export const Home = () => {
     <div className="container">
       <header>
         <h3>{content}</h3>
-        {loggedIn && <DisabilityDropdown/>}
+        {loggedIn && 
+        <>
+        <DisabilityDropdown/> 
+        <BulkInsertButton/>
+        </>
+        }
         {admin && <CSVLoader/>}
       </header>
     </div>

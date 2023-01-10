@@ -41,7 +41,6 @@ const postDisabilities =
   (req, res) => {
     if (req.body.disability_names.length > 0){
       const values = formatValues(req.body.disability_names)
-      console.log(values)
     const sql = `INSERT INTO disabilities (disability_name, last_update) values ${values} RETURNING *` 
     pool.query(
      sql,

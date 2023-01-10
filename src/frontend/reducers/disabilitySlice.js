@@ -1,13 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  disabilityList: ["test1", "test2", "test3", "test4"],
+  loaded: true
+}
+
+
 export const disabilitySlice = createSlice({
   name: "disability",
-  initialState: {
-    disabilityList: ["test1", "test2", "test3", "test4"],
-  },
+  initialState,
   reducers: {
     addDisability: (state, action) => {
       state.disabilityList = [...state.disabilityList, action.payload];
+    },
+    addDisabilities: (state, action) => {
+      state.disabilityList = [...state.disabilityList, ...action.payload];
     },
     removeDisability: (state, action) => {
       state.disabilityList = state.disabilityList.filter(
@@ -17,8 +24,6 @@ export const disabilitySlice = createSlice({
   },
 });
 
-export const { addDisability, removeDisability } = disabilitySlice.actions;
-
-export const getDisabilityList = (state) => state.disabilityList;
+export const { addDisability, addDisabilities, removeDisability } = disabilitySlice.actions;
 
 export default disabilitySlice.reducer;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const CSVLoader = () => {
   const [file, setFile] = useState();
-  const [array, setArray] = useState([]);
+  const [csvArray, setCSVArray] = useState([]);
 
   const fileReader = new FileReader();
 
@@ -23,7 +23,7 @@ export const CSVLoader = () => {
       return obj;
     });
 
-    setArray(array);
+    setCSVArray(array);
   };
 
   const handleOnSubmit = (e) => {
@@ -39,7 +39,7 @@ export const CSVLoader = () => {
     }
   };
 
-  const headerKeys = Object.keys(Object.assign({}, ...array));
+  const headerKeys = Object.keys(Object.assign({}, ...csvArray));
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -67,16 +67,16 @@ export const CSVLoader = () => {
         <thead>
           <tr key={"header"}>
             {headerKeys.map((key) => (
-              <th>{key}</th>
+              <th key={key}>{key}</th>
             ))}
           </tr>
         </thead>
 
         <tbody>
-          {array.map((item) => (
-            <tr key={item.id}>
-              {Object.values(item).map((val) => (
-                <td>{val}</td>
+          {csvArray.map((item,ind) => (
+            <tr key={ind}>
+              {Object.values(item).map((val,ind) => (
+                <td key={val}>{val}</td>
               ))}
             </tr>
           ))}

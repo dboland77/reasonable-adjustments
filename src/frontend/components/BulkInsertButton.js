@@ -1,5 +1,6 @@
 import React from 'react';
 import { setDisabilities } from '../services/user.service';
+
 import { useSelector } from 'react-redux';
 
 export const BulkInsertButton = () => {
@@ -14,7 +15,7 @@ export const BulkInsertButton = () => {
       });
     }
     return (
-        <button onClick = {handleClick}>Upload</button>
+        <button onClick = {handleClick}>Upload Selected</button>
     )
 }
 

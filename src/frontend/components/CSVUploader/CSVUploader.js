@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { addDisabilities } from "../../reducers/disabilitySlice"
+import { useDispatch } from "react-redux";
 
 export const CSVLoader = () => {
   const [file, setFile] = useState();
   const [csvArray, setCSVArray] = useState([]);
 
   const fileReader = new FileReader();
+  const dispatch = useDispatch()
 
   const handleOnChange = (e) => {
     setFile(e.target.files[0]);
+    dispatch(addDisabilities(e.target.files[0]))
   };
 
   const csvFileToArray = (string) => {

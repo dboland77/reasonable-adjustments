@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  disabilityList: ["test8", "test12", "test13", "test14"],
+  disabilityList: [
+    {"disability_id": 1,
+    "disability_name": "test1"}
+    ],
   loaded: true
 }
 

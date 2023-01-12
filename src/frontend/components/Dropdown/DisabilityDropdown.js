@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { getDisabilities } from "../../services/user.service.js";
+import React from "react";
+import {useSelector} from 'react-redux'
 
 export const DisabilityDropdown = () => {
-  const [disabilityList, setDisabilityList] = useState([]);
-
-  useEffect(() => {
-    getDisabilities()
-      .then((response) => {
-        setDisabilityList(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+  
+  const disabilityList = useSelector(state=>state.disability.disabilityList)
 
   return (
-    disabilityList.status === "success" && (
       <select>
-        {disabilityList.data.map((d) => (
+        {disabilityList.map((d) => (
           <option key={d.disability_id} value={d.disability_name}>
             {d.disability_name}
           </option>
         ))}
       </select>
-    )
   );
 };

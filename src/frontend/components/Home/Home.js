@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
-import {useSelector} from 'react-redux'
-import {getPublicContent} from "../../services/user.service"
+import {useSelector, useDispatch} from 'react-redux'
+import {getPublicContent, getDisabilities} from "../../services/user.service"
 import {DisabilityDropdown} from "../Dropdown/DisabilityDropdown"
 import {Navbar} from "../Navbar/Navbar"
 import {VerticalStepper} from "../VerticalStepper/VerticalStepper"
 import {CSVLoader} from "../CSVUploader/CSVUploader"
 import { BulkInsertButton } from "../BulkInsertButton";
+import { addDisabilities } from "../../reducers/disabilitySlice";
 
 export const Home = () => {
   const [content, setContent] = useState("");
   const loggedIn = useSelector(state=>state.user.isLoggedIn)
   const admin = useSelector(state=>state.user.admin)
+  const dispatch = useDispatch()
+
   useEffect(() => {
     loggedIn ? 
-    admin ? setContent("Logged In as admin") : setContent("Logged in")
+        getDisabilities().then(
+          (response) => {
+            dispatch(addDisabilities(response.data.data))
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
     :
     getPublicContent().then(
       (response) => {
@@ -29,7 +39,7 @@ export const Home = () => {
       }
     ) 
     
-  }, [loggedIn, admin]);
+  }, [dispatch, loggedIn]);
 
   return (
     <>
@@ -48,10 +58,12 @@ export const Home = () => {
         {loggedIn && 
         <>
         <DisabilityDropdown/> 
-        <BulkInsertButton/>
         </>
         }
-        {admin && <CSVLoader/>}
+        {loggedIn && admin && 
+        <><CSVLoader/>
+        <BulkInsertButton/>
+        </>}
       </header>
     </div>
     </>

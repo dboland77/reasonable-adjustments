@@ -61,8 +61,9 @@ export const Home = () => {
         </>
         }
         {loggedIn && admin && 
-        <><CSVLoader/>
+        <>
         <BulkInsertButton/>
+        <CSVLoader/>
         </>}
       </header>
     </div>

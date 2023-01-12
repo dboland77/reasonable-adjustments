@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  disabilityList: [
-    {"disability_id": 1,
-    "disability_name": "test1"}
-    ],
-  loaded: true
-}
-
+  disabilityList: ["test1"],
+  loaded: true,
+};
 
 export const disabilitySlice = createSlice({
   name: "disability",
@@ -27,6 +23,7 @@ export const disabilitySlice = createSlice({
   },
 });
 
-export const { addDisability, addDisabilities, removeDisability } = disabilitySlice.actions;
+export const { addDisability, addDisabilities, removeDisability } =
+  disabilitySlice.actions;
 
 export default disabilitySlice.reducer;

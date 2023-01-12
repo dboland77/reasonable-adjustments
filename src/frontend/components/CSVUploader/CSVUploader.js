@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { addDisabilities } from "../../reducers/disabilitySlice"
 import { useDispatch } from "react-redux";
+import { addDisabilities } from "../../reducers/disabilitySlice";
 
 export const CSVLoader = () => {
   const [file, setFile] = useState();
   const [csvArray, setCSVArray] = useState([]);
+  const dispatch = useDispatch();
 
   const fileReader = new FileReader();
-  const dispatch = useDispatch()
 
   const handleOnChange = (e) => {
     setFile(e.target.files[0]);
-    dispatch(addDisabilities(e.target.files[0]))
+  };
+
+  const convertArray = (csvArray) => {
+    const result = csvArray.map((a)=>Object.values(a)).flat()
+    return result;
   };
 
   const csvFileToArray = (string) => {
@@ -28,6 +32,7 @@ export const CSVLoader = () => {
     });
 
     setCSVArray(array);
+    dispatch(addDisabilities(convertArray(array)));
   };
 
   const handleOnSubmit = (e) => {
@@ -77,9 +82,9 @@ export const CSVLoader = () => {
         </thead>
 
         <tbody>
-          {csvArray.map((item,ind) => (
+          {csvArray.map((item, ind) => (
             <tr key={ind}>
-              {Object.values(item).map((val,ind) => (
+              {Object.values(item).map((val, ind) => (
                 <td key={val}>{val}</td>
               ))}
             </tr>

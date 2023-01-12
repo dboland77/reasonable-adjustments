@@ -9,6 +9,7 @@ const getDisabilities = () => {
 };
 
 const setDisabilities = (names) => {
+  console.log(names)
   return axios.post(process.env.REACT_APP_API_URL + "postdisabilities", 
   {
     "disability_names": names
